@@ -1,11 +1,11 @@
 package com.minsung.test;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 /**
  * Created by minsung on 14. 5. 22.
@@ -13,21 +13,29 @@ import android.widget.Button;
 public class MainActivity extends Activity {
     private static final String TAG = "TVS_KMS_" + MainActivity.class.getSimpleName();
 
+    private RecyclerView mRecyclerView;
+    private MyAdapter mAdapter;
+    private LinearLayoutManager mLayoutManager;
+
+    private String[] mDataSet = {"aaa", "bbb", "ccc"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mRecyclerView = (RecyclerView) findViewById(R.id.main_recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SubActivity.class));
-            }
-        });
+        mLayoutManager = new LinearLayoutManager(getApplicationContext());
+//        mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
-        ((Button)findViewById(R.id.button)).setText(getString(R.string.test, 7));
+        mAdapter = new MyAdapter();
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setDataSet(mDataSet);
+
     }
 
     @Override
