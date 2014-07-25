@@ -8,6 +8,7 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="android:Theme.Holo.NoActionBar.Fullscreen">
         <item name="android:windowBackground">@android:drawable/screen_background_dark</item>
+        <item name="android:windowAnimationStyle">@null</item>
     </style>
 
     

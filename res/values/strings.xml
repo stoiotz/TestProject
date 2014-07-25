@@ -3,6 +3,7 @@
 
     <!-- Application Name -->
 	<string name="app_name">TestProject</string>
+	<string name="test">[%d]</string>
 
 	
     
